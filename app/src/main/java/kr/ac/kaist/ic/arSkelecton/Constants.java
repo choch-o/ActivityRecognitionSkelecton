@@ -4,8 +4,8 @@ import android.hardware.SensorManager;
 
 public class Constants {
 	// Parameters
-	public final static String[] CLASS_LABELS = {"walk", "run"}; // Should be predefined before collecting data
-	public final static String[] ARFF_FILE_NAMES = {"walk.txt", "run.txt"}; // Will be used for model building after merging
+	public final static String[] CLASS_LABELS = {"still", "walk", "run", "bike", "car"}; // Should be predefined before collecting data
+	public final static String[] ARFF_FILE_NAMES = {"still.txt", "walk.txt", "run.txt", "bike.txt", "car.txt"}; // Will be used for model building after merging
 	public final static String WORKING_DIR_NAME = "activityRecognition"; // Folder name in SD card
 	public final static int SENSOR_DELAY = SensorManager.SENSOR_DELAY_FASTEST; // SensorManager.SENSOR_DELAY_FASTEST;
 	
