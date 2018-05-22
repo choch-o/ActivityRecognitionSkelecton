@@ -105,11 +105,13 @@ public class FeatureGenerator {
 
 	public static float calculateVariance(float[] data){
 
-		//////////////////////////////
-		// TO BE IMPLEMENTED FOR KSE624 ASSIGNMENT
-		//////////////////////////////
+		float mean = calculateMean(data);
+		float sqDiffSum = 0;
+		for(float d : data) {
+		    sqDiffSum += (d - mean) * (d - mean);
+        }
 
-		return 0;
+		return sqDiffSum / (data.length - 1);
 	}
 
 	public static float calculateVariance(DataInstance di){
@@ -194,14 +196,36 @@ public class FeatureGenerator {
 			zAggregated[i] = z;
 		}
 
+		float x_mean = calculateMean(xAggregated);
+		float y_mean = calculateMean(yAggregated);
+		float z_mean = calculateMean(zAggregated);
+
+		float x_max = calculateMax(xAggregated);
+		float y_max = calculateMax(yAggregated);
+		float z_max = calculateMax(zAggregated);
+
+		float x_min = calculateMin(xAggregated);
+		float y_min = calculateMin(yAggregated);
+		float z_min = calculateMin(zAggregated);
+
+		float x_var = calculateVariance(xAggregated);
+		float y_var = calculateVariance(yAggregated);
+		float z_var = calculateVariance(zAggregated);
 
 		// Output variables
 		HashMap<String, Float> featureMap = new HashMap<String, Float>();
-		//featureMap.put(Constants.HEADER_GYRO_X_MEAN, x_mean);
-
-		//////////////////////////////
-		// TO BE IMPLEMENTED FOR KSE624 ASSIGNMENT
-		//////////////////////////////
+        featureMap.put(Constants.HEADER_GYRO_X_MEAN, x_mean);
+        featureMap.put(Constants.HEADER_GYRO_Y_MEAN, y_mean);
+        featureMap.put(Constants.HEADER_GYRO_Z_MEAN, z_mean);
+        featureMap.put(Constants.HEADER_GYRO_X_MAX, x_max);
+        featureMap.put(Constants.HEADER_GYRO_Y_MAX, y_max);
+        featureMap.put(Constants.HEADER_GYRO_Z_MAX, z_max);
+        featureMap.put(Constants.HEADER_GYRO_X_MIN, x_min);
+        featureMap.put(Constants.HEADER_GYRO_Y_MIN, y_min);
+        featureMap.put(Constants.HEADER_GYRO_Z_MIN, z_min);
+        featureMap.put(Constants.HEADER_GYRO_X_VARIANCE, x_var);
+        featureMap.put(Constants.HEADER_GYRO_Y_VARIANCE, y_var);
+        featureMap.put(Constants.HEADER_GYRO_Z_VARIANCE, z_var);
 
 		//Log.d(TAG, "Gyroscope features : " + x_mean + " / " + x_max + " / " + x_min + " / " + acc_x_var);
 
