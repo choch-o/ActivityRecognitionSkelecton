@@ -1,34 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kr.ac.kaist.ic.arSkelecton.MainActivity$PlaceholderFragment" >
-
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="-----Sensor Data Collection-----"
+        android:text="-----Android Activity Recognition API-----"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/tvAARResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Predefined class label for activity recognition"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/etClassLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,35 +20,29 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/btnStartCollectingData"
+            android:id="@+id/btnStartAAR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Collection" />
+            android:text="Start AAR" />
 
         <Button
-            android:id="@+id/btnFinishCollectingData"
+            android:id="@+id/btnFinishAAR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Finish Collection" />
+            android:text="Finish AAR" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="-----Testing Model-----"
+        android:text="-----Test with FFT-----"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data sources files for model building"
+        android:text="Add FFT as a feature and test"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/tvDataSource"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
 
     <TextView
         android:layout_width="match_parent"
@@ -73,7 +51,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/etOutputFileName"
+        android:id="@+id/etFFTOutputFileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
@@ -87,34 +65,16 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/btnStartTestingModel"
+            android:id="@+id/btnStartFFTTestingModel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Testing" />
 
         <Button
-            android:id="@+id/btnFinishTestingModel"
+            android:id="@+id/btnFinishFFTTestingModel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Finish Testing" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnBonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bonus features" />
-
-    <ScrollView
-        android:id="@+id/scrollViewForLog"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" >
-
-        <TextView
-            android:id="@+id/tvLog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </ScrollView>
 
 </LinearLayout>

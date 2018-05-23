@@ -1,5 +1,7 @@
 package kr.ac.kaist.ic.arSkelecton;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -46,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
 	// UI elements
 	private Button btnStartCollectingData, btnFinishCollectingData;
 	private Button btnStartTestingModel, btnFinishTestingModel;
+	private Button btnBonus;
 	private EditText etClassLabelForModel, etOutputFileName;
 	private TextView tvDataSource, tvLog;
 	private ScrollView scrollViewForLog;
@@ -53,11 +56,14 @@ public class MainActivity extends ActionBarActivity {
     private SensorDataHandler sensorDataHandler;
     private DataClassifier sensorDataClassifier;
 
+    private Context context;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		context = this;
 		btnStartCollectingData = (Button) findViewById(R.id.btnStartCollectingData);
 		btnFinishCollectingData = (Button) findViewById(R.id.btnFinishCollectingData);
 		btnFinishCollectingData.setEnabled(false);
@@ -65,6 +71,8 @@ public class MainActivity extends ActionBarActivity {
 		btnStartTestingModel = (Button) findViewById(R.id.btnStartTestingModel);
 		btnFinishTestingModel = (Button) findViewById(R.id.btnFinishTestingModel);
 		btnFinishTestingModel.setEnabled(false);
+
+		btnBonus = (Button) findViewById(R.id.btnBonus);
 
 		tvLog = (TextView) findViewById(R.id.tvLog);
 		scrollViewForLog = (ScrollView) findViewById(R.id.scrollViewForLog);
@@ -95,6 +103,7 @@ public class MainActivity extends ActionBarActivity {
         btnFinishCollectingData.setOnClickListener(btnFinishCollectingDataOnClick);
         btnStartTestingModel.setOnClickListener(btnStartTestingModelOnClick);
         btnFinishTestingModel.setOnClickListener(btnFinishTestingModelOnClick);
+        btnBonus.setOnClickListener(btnBonusOnClick);
 
 
         this.sensorDataHandler = new SensorDataHandler(this);
@@ -195,6 +204,14 @@ public class MainActivity extends ActionBarActivity {
             String outputFileName = etOutputFileName.getText().toString();
             finishModelTest(outputFileName);
             etOutputFileName.setEnabled(true);
+        }
+    };
+
+    private View.OnClickListener btnBonusOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(context, BonusActivity.class);
+            startActivity(intent);
         }
     };
 

@@ -32,4 +32,6 @@ dependencies {
     compile files('libs/liblinear-1.94.jar')
     compile files('libs/libsvm.jar')
     compile files('libs/weka.jar')
+    compile 'com.google.android.gms:play-services-location:8.4.0'
 }
+
