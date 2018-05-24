@@ -24,13 +24,14 @@ import kr.ac.kaist.ic.activityRecognitionSkelecton.R ;
 public class BonusActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private Button btnStartAAR, btnFinishAAR;
-    private Button btnStartFFTTestingModel, btnFinishFFTTestingModel;
     TextView tvAARResult;
 
     public GoogleApiClient mApiClient;
 
     private Boolean connected = false;
     private Context context;
+
+    Intent arServiceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,11 @@ public class BonusActivity extends Activity implements GoogleApiClient.Connectio
 
         btnStartAAR = (Button) findViewById(R.id.btnStartAAR);
         btnFinishAAR = (Button) findViewById(R.id.btnFinishAAR);
-        btnStartFFTTestingModel = (Button) findViewById(R.id.btnStartFFTTestingModel);
-        btnFinishFFTTestingModel = (Button) findViewById(R.id.btnFinishFFTTestingModel);
 
         tvAARResult = (TextView) findViewById(R.id.tvAARResult);
 
         btnStartAAR.setOnClickListener(btnStartAAROnClick);
         btnFinishAAR.setOnClickListener(btnFinishAAROnClick);
-        btnStartFFTTestingModel.setOnClickListener(btnStartFFTTestingModelOnClick);
-        btnFinishFFTTestingModel.setOnClickListener(btnFinishFFTTestingModelOnClick);
 
         mApiClient = new GoogleApiClient.Builder(this)
                 .addApi(ActivityRecognition.API)
@@ -75,8 +72,8 @@ public class BonusActivity extends Activity implements GoogleApiClient.Connectio
         @Override
         public void onClick(View view) {
             if (connected) {
-                Intent intent = new Intent( context, ActivityRecognizedService.class );
-                PendingIntent pendingIntent = PendingIntent.getService( context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
+                arServiceIntent = new Intent( context, ActivityRecognizedService.class );
+                PendingIntent pendingIntent = PendingIntent.getService( context, 0, arServiceIntent, PendingIntent.FLAG_UPDATE_CURRENT );
                 ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates( mApiClient, 3000, pendingIntent );
             }
         }
@@ -85,21 +82,10 @@ public class BonusActivity extends Activity implements GoogleApiClient.Connectio
     private View.OnClickListener btnFinishAAROnClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-        }
-    };
-
-    private View.OnClickListener btnStartFFTTestingModelOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-        }
-    };
-
-    private View.OnClickListener btnFinishFFTTestingModelOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
+            if (arServiceIntent != null) {
+                stopService(arServiceIntent);
+                tvAARResult.setText("");
+            }
         }
     };
 
